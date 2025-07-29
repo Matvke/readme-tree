@@ -3,6 +3,7 @@
 Create a directory tree and save it in a readme file.
 
 # Example of generated directory tree
+```
 api_creater/
 │   ├── .env
 │   ├── .gitignore
@@ -58,3 +59,4 @@ api_creater/
 │   │       ├── cc364f1a07f4_removed_cloumn_is_added_from_base_model_.py
 │   │       └── f49d64b7d43d_username_unique_now.py
 │   └── tests/
+```
