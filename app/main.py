@@ -25,7 +25,7 @@ class TreeGenerator():
             return dir not in self.ignore_list and not dir.startswith(('.', '_')) 
         
         with open(self.readme_path, 'at', encoding="UTF-8") as file:
-            file.write("# Directory tree\n\n")
+            file.write("# Directory tree\n\n```")
             for dirpath, dirnames, filenames in os.walk(path):
                 dirnames[:] = [d for d in dirnames if ignore_condition(d)]
                 filenames[:] = [f for f in filenames if not f.startswith(('_'))]
@@ -62,6 +62,7 @@ class TreeGenerator():
                     file.write(f"{indent}{file_start_symbol}{filename}\n")
 
                 self.ignore_list.append(Path(dirpath).name)
+            file.write('```')
 
 
 
