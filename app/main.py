@@ -12,9 +12,13 @@ class TreeGenerator():
                  root_dir: str, 
                  ignore_list: list = [], 
                  read_gitignore: bool = True, 
-                 gitignore_path: str = '.gitignore'):
+                 gitignore_path: str = '.gitignore',
+                 include_files: bool = True,
+                 max_depth: int|None = None):
         self.ignore_list = ignore_list
         self.root_dir = Path(root_dir).resolve()
+        self.include_files = include_files
+        self.max_depth = max_depth
 
         if read_gitignore:
             try:
@@ -31,7 +35,9 @@ class TreeGenerator():
                 gitignore_list.append(line.strip().replace('/', ''))
         return gitignore_list
 
-    def _build_tree(self, curr_path):
+    def _build_tree(self, curr_path, curr_depth: int = 0):
+        if self.max_depth and curr_depth >= self.max_depth:
+            return None
         tree = {}
 
         for entity in sorted(os.scandir(curr_path), key=lambda e: e.is_file()):
@@ -40,8 +46,8 @@ class TreeGenerator():
                 continue
 
             if entity.is_dir():
-                tree[entity.name] = self._build_tree(path_entity)
-            elif entity.is_file():
+                tree[entity.name] = self._build_tree(path_entity, (curr_depth + 1))
+            elif entity.is_file() and self.include_files:
                 tree[entity.name] = None
         return tree
     
@@ -52,11 +58,14 @@ class TreeGenerator():
         for i, name in enumerate(entities):
             is_last = (i == len(entities) - 1)
             connector = CONNECTOR_LAST_BRANCH if is_last else CONNECTOR_BRANCH
-            lines.append(f"{prefix}{connector}{name}")
 
             if isinstance(tree_dict[name], dict):
+                lines.append(f"{prefix}{connector}{name}\\")
                 parent_prefix = PREFIX_EMPTY if is_last else PREFIX_PIPE
                 lines.extend(self._format_tree(tree_dict[name], prefix=prefix + parent_prefix))
+
+            else:
+                lines.append(f"{prefix}{connector}{name}")
 
         return lines
 
@@ -66,7 +75,7 @@ class TreeGenerator():
     def generate_str(self) -> str:
         tree_structure = self._build_tree(self.root_dir)
         tree_lines = self._format_tree(tree_structure)
-        return f"{self.root_dir.name}{os.sep} \n" + "\n".join(tree_lines)
+        return f"{self.root_dir.name}\\ \n" + "\n".join(tree_lines)
 
     def generate_json(self) -> str:
         tree_structure = {} 

@@ -6,43 +6,43 @@ Create a directory tree and save it in a readme file.
 
 ```
 api_creater\ 
-├── app
-│   ├── api
-│   │   └── v1
-│   │       ├── endpoints
+├── app\
+│   ├── api\
+│   │   └── v1\
+│   │       ├── endpoints\
 │   │       │   ├── auth.py
 │   │       │   └── user.py
 │   │       └── routes.py
-│   ├── core
+│   ├── core\
 │   │   ├── config.py
 │   │   ├── database.py
 │   │   ├── dependencies.py
 │   │   ├── enums.py
 │   │   └── security.py
-│   ├── dependencies
+│   ├── dependencies\
 │   │   ├── auth_dependencies.py
 │   │   ├── repository_dependencies.py
 │   │   └── service_dependencies.py
-│   ├── exceptions
+│   ├── exceptions\
 │   │   ├── exception_handlers.py
 │   │   ├── http_exceptions.py
 │   │   └── service_exceptions.py
-│   ├── model
+│   ├── model\
 │   │   └── models.py
-│   ├── repository
+│   ├── repository\
 │   │   ├── base_repository.py
 │   │   ├── post_repository.py
 │   │   └── user_repository.py
-│   ├── schemas
+│   ├── schemas\
 │   │   ├── auth_request.py
 │   │   ├── auth_response.py
 │   │   └── security_schema.py
-│   ├── services
+│   ├── services\
 │   │   ├── auth_service.py
 │   │   └── user_service.py
 │   └── main.py
-├── migration
-│   ├── versions
+├── migration\
+│   ├── versions\
 │   │   ├── 095ec926e9eb_rename_column_users_name_to_users_.py
 │   │   ├── 0bf6f180d102_is_active_base_column_now.py
 │   │   ├── a6e07ec20d38_rename_password_to_hashed_password.py
@@ -53,7 +53,7 @@ api_creater\
 │   ├── env.py
 │   ├── README
 │   └── script.py.mako
-├── tests
+├── tests\
 ├── alembic.ini
 ├── LICENSE
 ├── README.md
