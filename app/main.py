@@ -81,3 +81,9 @@ class TreeGenerator():
         tree_structure = {} 
         tree_structure[self.root_dir.name]= self._build_tree(self.root_dir)
         return json.dumps(tree_structure)
+    
+# Usage example
+curr_path = r"C:\Users\matve\readme-tree"
+tree_generator = TreeGenerator(curr_path)
+with open('README.md', 'a', encoding='utf-8') as file:
+    file.write(tree_generator.generate_str())
