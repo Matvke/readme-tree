@@ -32,7 +32,7 @@ A Python tool to generate directory structures with customizable filtering (`.gi
 
 1. Simple tree (text output):
    ```bash
-   python tree_generator.py --root_dir ./project
+   python main.py --root_dir ./project
    ```
 
 2. JSON output with depth limit:
