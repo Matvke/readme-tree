@@ -37,12 +37,12 @@ A Python tool to generate directory structures with customizable filtering (`.gi
 
 2. JSON output with depth limit:
    ```bash
-   python tree_generator.py --root_dir ./project --max_depth 2 --output_type json
+   python main.py --root_dir ./project --max_depth 2 --output_type json
    ```
 
 3. With gitignore support:
    ```bash
-   python tree_generator.py --root_dir ./project --gitignore_path .gitignore True
+   python main.py --root_dir ./project --gitignore_path .gitignore True
    ```
 
 ## Output Samples
